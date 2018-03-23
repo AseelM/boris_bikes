@@ -7,12 +7,6 @@ describe DockingStation do
    is_expected.to respond_to(:release_bike)
   end
 
-  it "gets a bike when passed release_bike" do
-    station = DockingStation.new
-    station.dock_bike(Bike.new)
-   expect(station.release_bike).to be_an_instance_of(Bike)
-  end
-
   it "returns true if bike is working" do
     station = DockingStation.new
     double = double(:bike, working?: true)
@@ -37,7 +31,8 @@ describe DockingStation do
 
   it "should raise an error when docking_station is full" do
     station = DockingStation.new
-    21.times { station.dock_bike(Bike.new)}
+    double = double(:bike, working?: true)
+    21.times { station.dock_bike(double)}
     expect(station.bikes.length).to eq 20
   end
 
@@ -49,8 +44,9 @@ describe DockingStation do
 
   it "should return a bike when a bike is available" do
     station = DockingStation.new
-    station.dock_bike(Bike.new)
-    expect(station.release_bike).to be_an_instance_of(Bike)
+    double = double(:bike, working?: true)
+    station.dock_bike(double)
+    expect(station.release_bike).to eq double
   end
 
 end
