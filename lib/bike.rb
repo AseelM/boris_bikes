@@ -1,7 +1,11 @@
 class Bike
 
-  def working?
-    true
+  def initialize
+    @working
   end
 
+  def working?
+    @working = true
+  end
+  
 end

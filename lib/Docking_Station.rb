@@ -3,6 +3,9 @@ class DockingStation
   attr_reader :bike
   attr_reader :bikes
 
+  def initialize
+    @bikes = []
+  end
 
   def release_bike
     if empty?
@@ -19,10 +22,6 @@ class DockingStation
   end
 
 private
-
-  def initialize
-    @bikes = []
-  end
 
   def empty?
     if @bikes.length == 0

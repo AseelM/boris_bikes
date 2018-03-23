@@ -13,7 +13,7 @@ describe DockingStation do
     expect(station.release_bike).to eq double
   end
 
-  it "returns a bike if available bike is not working" do
+  it "returns a message if available bike is not working" do
     station = DockingStation.new
     double = double(:bike, working?: false)
     station.dock_bike(double)
