@@ -3,7 +3,7 @@ require "docking_station"
 describe DockingStation do
 
   DEFAULT_CAPACITY = 20
-  
+
   it "expected to respond to release_bike" do
    is_expected.to respond_to(:release_bike)
   end
@@ -51,4 +51,5 @@ describe DockingStation do
     expect(station.release_bike).to eq double
   end
 
+  it "should "
 end
