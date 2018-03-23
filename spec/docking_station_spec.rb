@@ -15,8 +15,16 @@ describe DockingStation do
 
   it "returns true if bike is working" do
     station = DockingStation.new
-    station.dock_bike(Bike.new)
-    expect(station.release_bike.working?).to be(true).or be(false)
+    double = double(:bike, working?: true)
+    station.dock_bike(double)
+    expect(station.release_bike.working?).to be(true)
+  end
+
+  it "returns true if bike is not working" do
+    station = DockingStation.new
+    double = double(:bike, working?: false)
+    station.dock_bike(double)
+    expect(station.release_bike.working?).to be(false)
   end
 
   it "expected to respond to dock_bike" do
