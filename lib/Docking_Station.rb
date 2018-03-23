@@ -5,8 +5,9 @@ class DockingStation
 
 
   def release_bike
-    unless empty?
-      @bike
+    if empty?
+    else
+      @bike.working? ? @bike : 'no working bikes!'
     end
   end
 
