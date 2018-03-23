@@ -51,4 +51,14 @@ describe DockingStation do
     expect(station.release_bike).to eq double
   end
 
+  it "should return instance capacity when passed one" do
+    station = DockingStation.new(25)
+    expect(station.capacity).to eq 25
+  end
+
+  it "should set default capacity when not passed one" do
+    station = DockingStation.new
+    expect(station.capacity).to eq DEFAULT_CAPACITY
+  end
+
 end
