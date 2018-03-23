@@ -2,6 +2,7 @@ class DockingStation
 
   DEFAULT_CAPACITY = 20
   attr_reader :bike
+  attr_reader :bikes
 
   def initialize
     @bikes = []
@@ -25,14 +26,14 @@ private
 
   def empty?
     if @bikes.count == 0
-      puts 'No bikes available'
+      p 'No bikes available'
       true
     end
   end
 
   def full?
     if @bikes.count >= DEFAULT_CAPACITY
-      puts 'Docking station is full!'
+      p 'Docking station is full!'
       true
     end
   end

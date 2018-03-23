@@ -30,15 +30,15 @@ describe DockingStation do
      expect(DockingStation.new).to respond_to(:dock_bike).with(1).argument
   end
 
-  it "should raise an error when docking_station is full" do
+  it "should not dock a bike when capacity is full" do
     station = DockingStation.new
-    double = double(:bike, working?: true)
+    double = double(:bike)
     station.dock_bike(double)
     DEFAULT_CAPACITY.times { station.dock_bike(double)}
     expect(station.bikes.length).to eq DEFAULT_CAPACITY
   end
 
-  it "should raise an error when bikes are not available" do
+  it "should not release a bike when one is not available" do
     station = DockingStation.new
     station.release_bike
     expect(station.bike).to eq nil
@@ -51,5 +51,4 @@ describe DockingStation do
     expect(station.release_bike).to eq double
   end
 
-  it "should "
 end
