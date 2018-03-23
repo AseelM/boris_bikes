@@ -48,9 +48,9 @@ describe DockingStation do
   end
 
   it "should return a bike when a bike is available" do
-    docking_station = DockingStation.new
-    docking_station.dock_bike(Bike.new)
-    expect(docking_station.release_bike).to be_an_instance_of(Bike)
+    station = DockingStation.new
+    station.dock_bike(Bike.new)
+    expect(station.release_bike).to be_an_instance_of(Bike)
   end
 
 end
