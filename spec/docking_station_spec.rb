@@ -2,6 +2,8 @@ require "docking_station"
 
 describe DockingStation do
 
+  DEFAULT_CAPACITY = 20
+  
   it "expected to respond to release_bike" do
    is_expected.to respond_to(:release_bike)
   end
@@ -31,8 +33,9 @@ describe DockingStation do
   it "should raise an error when docking_station is full" do
     station = DockingStation.new
     double = double(:bike, working?: true)
-    21.times { station.dock_bike(double)}
-    expect(station.bikes.length).to eq 20
+    station.dock_bike(double)
+    DEFAULT_CAPACITY.times { station.dock_bike(double)}
+    expect(station.bikes.length).to eq DEFAULT_CAPACITY
   end
 
   it "should raise an error when bikes are not available" do
