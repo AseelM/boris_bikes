@@ -9,17 +9,16 @@ describe DockingStation do
   end
 
   it "returns a bike if available bike is working" do
-    station = DockingStation.new
     double = double(:bike, working?: true)
-    station.dock_bike(double)
-    expect(station.release_bike).to eq double
+    subject.dock_bike(double)
+    bike = subject.release_bike
+    expect(bike).to eq double
   end
 
   it "returns a message if available bike is not working" do
-    station = DockingStation.new
-    double = double(:bike, working?: false)
-    station.dock_bike(double)
-    expect(station.release_bike).to eq 'no working bikes!'
+    subject.dock_bike double(:bike, working?: false)
+    bike = subject.release_bike
+    expect(bike).to eq 'no working bikes!'
   end
 
   it "expected to respond to dock_bike" do
@@ -27,28 +26,25 @@ describe DockingStation do
   end
 
   it "expected to respond to dock_bike" do
-     expect(DockingStation.new).to respond_to(:dock_bike).with(1).argument
+     expect(subject).to respond_to(:dock_bike).with(1).argument
   end
 
   it "should not dock a bike when capacity is full" do
-    station = DockingStation.new
-    double = double(:bike)
-    station.dock_bike(double)
-    DEFAULT_CAPACITY.times { station.dock_bike(double)}
-    expect(station.bikes.length).to eq DEFAULT_CAPACITY
+    (DEFAULT_CAPACITY + 1).times { subject.dock_bike double(:bike)}
+    number_of_bikes = subject.bikes.length
+    expect(number_of_bikes).to eq DEFAULT_CAPACITY
   end
 
   it "should not release a bike when one is not available" do
-    station = DockingStation.new
-    station.release_bike
-    expect(station.bike).to eq nil
+    subject.release_bike
+    expect(subject.bike).to eq nil
   end
 
   it "should return a bike when a working bike is available" do
-    station = DockingStation.new
     double = double(:bike, working?: true)
-    station.dock_bike(double)
-    expect(station.release_bike).to eq double
+    subject.dock_bike double
+    bike = subject.release_bike
+    expect(bike).to eq double
   end
 
   it "should return instance capacity when passed one" do
@@ -57,8 +53,7 @@ describe DockingStation do
   end
 
   it "should set default capacity when not passed one" do
-    station = DockingStation.new
-    expect(station.capacity).to eq DEFAULT_CAPACITY
+    expect(subject.capacity).to eq DEFAULT_CAPACITY
   end
 
 end
